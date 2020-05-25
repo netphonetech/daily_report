@@ -152,7 +152,7 @@
                                             </div>
                                             <div class="col-md-9 offset-3">
                                                 <button type="submit" class="btn btn-primary btn-block">
-                                                    Add user
+                                                    Update User Details
                                                 </button>
                                             </div>
                                         </form>
