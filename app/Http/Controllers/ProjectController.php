@@ -127,9 +127,9 @@ class ProjectController extends Controller
         }
         $project->completed = true;
         if ($project->save()) {
-            session()->flash('success', 'Project removed');
+            session()->flash('success', 'Project marked as completed');
         } else {
-            session()->flash('error', 'Error, project not removed. Refresh and try again');
+            session()->flash('error', 'Error, project not marked as completed. Refresh and try again');
         }
         return redirect()->back();
     }

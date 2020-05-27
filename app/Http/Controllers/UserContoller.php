@@ -46,7 +46,7 @@ class UserContoller extends Controller
         $user = new User();
 
         $user->name = $request->name;
-        $user->phone = substr($request->phone, 1, 9);
+        $user->phone = $request->phone;
         $user->email = $request->email;
         $user->admin = $request->role;
         $user->password = Hash::make($request->email);
@@ -74,7 +74,7 @@ class UserContoller extends Controller
             session()->flash('error', 'Failed, user not exist. Refresh and try again');
             return redirect()->back();
         }
-        $updated = User::where('id', $request->id)->update(['name' => $request->name, 'phone' => substr($request->phone, 1, 9), 'email' => $request->email, 'admin' => $request->role]);
+        $updated = User::where('id', $request->id)->update(['name' => $request->name, 'phone' => $request->phone, 'email' => $request->email, 'admin' => $request->role]);
 
         if ($updated) {
             session()->flash('success', 'User updated');

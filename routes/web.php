@@ -26,7 +26,7 @@ Route::get('project/show', 'ProjectController@show')->name('show-project');
 Route::post('project/add', 'ProjectController@store')->name('store-project');
 Route::post('project/update', 'ProjectController@update')->name('update-project');
 Route::post('project/remove', 'ProjectController@destroy')->name('destroy-project');
-Route::post('project/mark-complete', 'ProjectController@destroy')->name('destroy-project');
+Route::post('project/mark-complete', 'ProjectController@complete')->name('mark-complete');
 
 
 //projects participant

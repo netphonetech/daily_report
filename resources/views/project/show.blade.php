@@ -98,18 +98,31 @@
                                 Update project details
                             </button>
                         </div>
-
                     </form>
-                    <div class="col-md-8 offset-4">
-                        <form method="POST" action="{{ route('destroy-project') }}"
-                            onsubmit="return confirm('Are you sure to delete? This action is not reversible!')">
-                            @csrf
-                            <input type="hidden" name="id" value="{{$project->id}}">
-                            <button type="submit" class="btn btn-danger btn-block">
-                                Delete This Project
-                            </button>
-                        </form>
+                    <div class="row offset-2">
+                        <div class="col-md-6 form-group">
+                            <form method="POST" action="{{ route('destroy-project') }}"
+                                onsubmit="return confirm('Are you sure to delete? This action is not reversible!')">
+                                @csrf
+                                <input type="hidden" name="id" value="{{$project->id}}">
+                                <button type="submit" class="btn btn-danger btn-block">
+                                    Delete This Project
+                                </button>
+                            </form>
+                        </div>
+                        <div class="col-md-6">
+                            <form method="POST" action="{{ route('mark-complete') }}"
+                                onsubmit="return confirm('Is the project finished?')">
+                                @csrf
+                                <input type="hidden" name="id" value="{{$project->id}}">
+                                <button type="submit" class="btn btn-success btn-block">
+                                    Mark Completed
+                                </button>
+                            </form>
+                        </div>
                     </div>
+
+
                 </div>
                 <div class="col-md-7">
                     @if (!$participants->first())

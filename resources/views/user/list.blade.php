@@ -39,7 +39,7 @@
                             </td>
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
-                            <td>+255 {{$user->phone}}</td>
+                            <td>+{{$user->phone}}</td>
                             <td><i
                                     class="badge badge-pill badge-{{$user->admin?'secondary':'primary'}}">{{$user->admin?'Admin':'Normal'}}</i>
                             </td>
@@ -101,8 +101,8 @@
                                                     class="col-md-3 col-form-label text-md-right">{{ __('Phone') }}</label>
 
                                                 <div class="col-md-9">
-                                                    <input id="phone" placeholder="eg 0712098765"
-                                                        value="0{{ $user->phone }}" autofocus pattern="0[0-9]{9}"
+                                                    <input id="phone" placeholder="eg 255712098765"
+                                                        value="{{ $user->phone }}" autofocus pattern="[0-9]{8,}"
                                                         class="form-control @error('phone') is-invalid @enderror"
                                                         name="phone" required>
 
@@ -207,8 +207,8 @@
                         <label for="phone" class="col-md-3 col-form-label text-md-right">{{ __('Phone') }}</label>
 
                         <div class="col-md-9">
-                            <input id="phone" placeholder="eg 0712098765" value="{{ old('phone') }}" autofocus
-                                pattern="0[0-9]{9}" class="form-control @error('phone') is-invalid @enderror"
+                            <input id="phone" placeholder="eg 255712098765" value="{{ old('phone') }}" autofocus
+                                pattern="[0-9]{10,}" class="form-control @error('phone') is-invalid @enderror"
                                 name="phone" required>
 
                             @error('phone')
