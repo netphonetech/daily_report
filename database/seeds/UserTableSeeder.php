@@ -19,7 +19,7 @@ class UserTableSeeder extends Seeder
         $default_user = new User();
         $default_user->name = "Super User";
         $default_user->email = "info@netphone.co.tz";
-        $default_user->phone = "766457248";
+        $default_user->phone = "255766457248";
         $default_user->password = Hash::make("info@netphone.co.tz");
         $default_user->admin = true;
         $default_user->save();
@@ -31,7 +31,7 @@ class UserTableSeeder extends Seeder
             User::insert([
                 'name' =>  $faker->firstName . " " . $faker->lastName,
                 'email' => $email,
-                'phone' => substr($faker->e164PhoneNumber, 3, 9),
+                'phone' => substr($faker->e164PhoneNumber, 3, 11),
                 'password' => Hash::make($email),
                 'remember_token' => Str::random(10),
                 'admin' => false,
