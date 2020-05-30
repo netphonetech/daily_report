@@ -13,7 +13,7 @@
         </div>
         <div class="card-body form-group">
             <div class="form-group row">
-                <div class="col-md-5">
+                <div class="col-md-4">
                     <form method="POST" action="{{ route('update-project') }}">
                         @csrf
                         <input type="hidden" name="id" value="{{$project->id}}">
@@ -99,14 +99,14 @@
                             </button>
                         </div>
                     </form>
-                    <div class="row offset-2">
-                        <div class="col-md-6 form-group">
+                    <div class="row offset-4">
+                        <div class="col-md-5 form-group">
                             <form method="POST" action="{{ route('destroy-project') }}"
                                 onsubmit="return confirm('Are you sure to delete? This action is not reversible!')">
                                 @csrf
                                 <input type="hidden" name="id" value="{{$project->id}}">
                                 <button type="submit" class="btn btn-danger btn-block">
-                                    Delete This Project
+                                    Delete
                                 </button>
                             </form>
                         </div>
@@ -116,7 +116,7 @@
                                 @csrf
                                 <input type="hidden" name="id" value="{{$project->id}}">
                                 <button type="submit" class="btn btn-success btn-block">
-                                    Mark Completed
+                                    Completed
                                 </button>
                             </form>
                         </div>
@@ -124,7 +124,7 @@
 
 
                 </div>
-                <div class="col-md-7">
+                <div class="col-md-8">
                     @if (!$participants->first())
                     <h4 class="text-center">No participant added yet</h4>
                     @else
