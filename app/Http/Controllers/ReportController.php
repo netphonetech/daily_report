@@ -25,7 +25,9 @@ class ReportController extends Controller
      */
     public function index()
     {
-        $projects = Project::join('project_participants', 'project_participants.projectID', 'projects.id')->where([['projects.status', true], ['project_participants.userID', auth()->user()->id]])->get();
+        $projects = Project::join('project_participants', 'project_participants.projectID', 'projects.id')->where([['projects.status', true], ['project_participants.userID', auth()->user()->id]])
+        ->select('projects.id','projects.name','description','start_date','expected_end_date','end_date')
+        ->get();
         $reports = Report::where('reports.status', true)
             ->join('users', 'users.id', 'reports.userID')
             ->join('projects', 'projects.id', 'reports.projectID')
