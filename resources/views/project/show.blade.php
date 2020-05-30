@@ -5,11 +5,15 @@
         <div class="card-header">
             <a class="btn btn-outline-dark" href="{{ route('list-projects')}}"><i class="fa fa-long-arrow-left"></i>
                 Back</a>
-            <span class="text-capitalize">Projects</span><span
-                class="text-capitalize font-italic">&nbsp;list</span><button type="button"
-                class="btn btn-outline-success float-right" data-toggle="modal" data-target="#modal-add">
+            <span class="text-capitalize">Projects</span><span class="text-capitalize font-italic">&nbsp;list</span>
+            @if ($project->completed)
+            <button type="button" class="btn btn-success float-right">PROJECT COMPLETED !</button>
+            @else
+            <button type="button" class="btn btn-outline-success float-right" data-toggle="modal"
+                data-target="#modal-add">
                 Add participant
             </button>
+            @endif
         </div>
         <div class="card-body form-group">
             <div class="form-group row">
@@ -93,13 +97,16 @@
                                 @enderror
                             </div>
                         </div>
+                        @if (!$project->completed)
                         <div class="col-md-8 offset-4 form-group">
                             <button type="submit" class="btn btn-primary btn-block">
                                 Update project details
                             </button>
                         </div>
+                        @endif
                     </form>
                     <div class="row offset-4">
+                        @if (!$project->completed)
                         <div class="col-md-5 form-group">
                             <form method="POST" action="{{ route('destroy-project') }}"
                                 onsubmit="return confirm('Are you sure to delete? This action is not reversible!')">
@@ -115,14 +122,15 @@
                                 onsubmit="return confirm('Is the project finished?')">
                                 @csrf
                                 <input type="hidden" name="id" value="{{$project->id}}">
-                                <button type="submit" class="btn btn-success btn-block">
-                                    Completed
+                                <button type="{{$project->completed?'button':'submit'}}"
+                                    class="btn btn-success btn-block">
+                                    {{$project->completed?'Completed!':'Complete'}}
                                 </button>
                             </form>
                         </div>
+                        @endif
+
                     </div>
-
-
                 </div>
                 <div class="col-md-8">
                     @if (!$participants->first())
@@ -137,8 +145,10 @@
                                 <th>Reports</th>
                                 <th>Performance</th>
                                 <th>Started</th>
+                                @if (!$project->completed)
                                 <th></th>
                                 <th></th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -161,6 +171,7 @@
                                 <td>{{$participant->performance}}</td>
                                 <td>{{$participant->created_at!=NULL?date('M j, Y',strtotime($participant->created_at)):"-"}}
                                 </td>
+                                @if (!$project->completed)
                                 <td align="center"><button type="button" class="btn btn-outline-success btn-sm"
                                         data-toggle="modal" data-target="#modal-edit-{{$participant->id}}">
                                         <i class="fa fa-edit"></i>
@@ -175,6 +186,7 @@
                                         </button>
                                     </form>
                                 </td>
+                                @endif
                             </tr>
 
                             {{-- edit-{{$participant->id}} modal --}}
